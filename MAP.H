@@ -1,0 +1,65 @@
+#ifndef _MAP
+#define _MAP
+#include<graphics.h>
+#include<math.h>
+void _rect(int x, int y, int x1, int y1,int a=9, int b=1)
+{
+	setlinestyle(0,0,2);
+	setcolor((a==-1)?9:a);
+	rectangle(x,y,x1,y1);
+	setcolor(b);
+	if(x<SCREEN_W/2 && y<SCREEN_H/2 || a==-1)
+		rectangle(x+1,y+1,x1-1,y1-1);
+  else	if(x>SCREEN_W/2 && y<SCREEN_H/2)
+		rectangle(x-1,y+1,x1+1,y1-1);
+  else	if(x<SCREEN_W/2 && y>SCREEN_H/2)
+		rectangle(x+1,y-1,x1-1,y1+1);
+  else	if(x>SCREEN_W/2 && y>SCREEN_H/2)
+		rectangle(x-1,y-1,x1+1,y1+1);
+}
+void _fillrect(int x, int y, int x1, int y1, int col)
+{
+	setfillstyle(1,col);
+	bar(x,y,x1,y1);
+}
+void _piperect(int x, int y, int x1, int y1, int a=9, int b=1)
+{
+	_rect(x,y,x1,y1,a==9?-1:a,b);
+	_rect(x+5, y+5, x1-5, y1-5,a==9?-1:a,b);
+}
+void draw_map()
+{
+	_piperect(4,4,636,476,1,9);
+	_fillrect(0,160,639,320,0);
+	_piperect(0,160,100,230);
+	_piperect(0,250,100,320);
+	_piperect(540,160,640,230);
+	_piperect(540,250,640,320);
+    for(int i=0;i<=SCREEN_W;i+=SCREEN_W)
+    {
+	  for(int j=0;j<=SCREEN_H;j+=SCREEN_H)
+	  {
+		_rect(abs(i-30),abs(j-30),abs(i-140),abs(j-40));
+		_rect(abs(i-120),abs(j-40),abs(i-140),abs(j-90));
+		_rect(abs(i-10),abs(j-60),abs(i-100),abs(j-70));
+		_fillrect(abs(i-122),abs(j-32),abs(i-138),abs(j-88),0);
+		_rect(abs(i-30),abs(j-90),abs(i-100),abs(j-140));
+		_rect(abs(i-100),abs(j-110),abs(i-140),abs(j-120));
+		_fillrect(abs(i-98),abs(j-112),abs(i-138),abs(j-118),0);
+		_rect(abs(i-120),abs(j-140),abs(i-130),abs(j-230));
+		_rect(abs(i-130),abs(j-140),abs(i-220),abs(j-150));
+		_fillrect(abs(i-128),abs(j-142),abs(i-188),abs(j-148),0);
+		_rect(abs(i-150),abs(j-170),abs(i-220),abs(j-240));
+		_rect(abs(i-240),abs(j-30),abs(i-250),abs(j-230));
+		_rect(abs(i-160),abs(j-30),abs(i-220),abs(j-120));
+		_rect(abs(i-270),abs(j-30),abs(i-310),abs(j-70));
+		_rect(abs(i-270),abs(j-90),abs(i-310),abs(j-130));
+		_rect(abs(i-270),abs(j-150),abs(i-320),abs(j-230));
+		_fillrect(abs(i-319),abs(j-152),abs(i-320),abs(j-228),0);
+
+	  }
+	  _fillrect(abs(i-152),238,abs(i-218),242,0);
+
+    }
+}
+#endif

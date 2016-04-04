@@ -1,0 +1,123 @@
+#include "PELLET.H"
+#include<graphics.h>
+#include<math.h>
+#include<dos.h>
+extern int score;
+void pellet::assignpellets(pellet *p)
+{
+	int n=0;
+	for(int i=0;i<=SCREEN_W;i+=SCREEN_W)
+	  	for(int j=0;j<=SCREEN_H;j+=SCREEN_H) 	
+		{
+			for(int k=20;k<=310;k+=5)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-20);
+				n++;
+			}
+			for(k=30;k<=50;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-20);
+				n++;
+			}
+			for(k=30;k<=110;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-50);
+				n++;
+			}
+			for(k=20;k<=100;k+=10)	
+			{	
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-80);
+				n++;
+			}
+			for(k=20;k<=110;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-150);
+				n++;
+			}
+			for(k=30;k<=120;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-150);
+				n++;
+			}
+			for(k=30;k<=230;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-260);
+				n++;
+			}
+			for(k=30;k<=230;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-230);
+				n++;
+			}
+			for(k=110;k<=220;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-130);
+				n++;
+			}
+			for(k=110;k<=140;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-100);
+				n++;
+			}
+			for(k=90;k<=140;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-20);
+				n++;
+			}
+			for(k=270;k<=310;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-80);
+				n++;
+			}
+			for(k=270;k<=310;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-140);
+				n++;
+			}
+			for(k=150;k<=220;k+=10)
+			{
+				p[n].x=abs(i-k);
+				p[n].y=abs(j-160);
+				n++;
+			}
+			for(k=160;k<=230;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-140);
+				n++;
+			}
+			for(k=140;k<=230;k+=10)
+			{
+				p[n].y=abs(j-k);
+				p[n].x=abs(i-110);
+				n++;
+			}
+					
+		}
+}
+void pellet::check(pm &pac)
+{
+	if(pac.getposx()==x && pac.getposy()==y)
+	{
+		score+=10;
+		x=y=-10;
+		sound(2000);		
+	}
+}
+void pellet::putpellet()
+{
+	bar(x,y,x+1,y+1);
+}
